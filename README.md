@@ -7,4 +7,5 @@ Team project for NSWI130
 - Martin Čorovčák
 - Nicol Čačalová
 
-For more information about the project, go to the docs folder.
+For more information about the project, go to the `docs` folder.
+`Structurizr` folder contains the current C4 model.
