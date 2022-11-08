@@ -33,25 +33,17 @@ workspace patient-monitor-control {
                 }
 
                 group services {
-                    notification_service = component "Notification Service" "Service for sending notifications" {
-                        -> controller "Sends commands to"
-                    }
+                    notification_service = component "Notification Service" "Service for sending notifications"
+                    devices_service = component "Devices Service" "Service for managing devices and getting their data"
+                    personnel_service = component "Personnel Service" "Service for managing personnel"
+                    patient_service = component "Patient Service" "Service for managing patients"
+                    drugs_service = component "Drugs Service" "Service for managing drugs"
 
-                    devices_service = component "Devices Service" "Service for managing devices and getting their data" {
-                        -> controller  "Sends commands to"
-                    }
-
-                    personnel_service = component "Personnel Service" "Service for managing personnel" {
-                        -> controller  "Sends commands to"
-                    }
-
-                    patient_service = component "Patient Service" "Service for managing patients" {
-                        -> controller   "Sends commands to"
-                    }
-
-                    drugs_service = component "Drugs Service" "Service for managing drugs" {
-                        -> controller   "Sends commands to"
-                    }
+                    controller -> notification_service "Sends requests to notification service"
+                    controller -> personnel_service "Sends requests to personnel service"
+                    controller -> patient_service "Sends requests to patient service"
+                    controller -> drugs_service "Sends requests to drugs service"
+                    controller -> devices_service "Sends requests to devices service"
                 }
 			}
 
@@ -62,41 +54,28 @@ workspace patient-monitor-control {
             }
 
             group interfaces {
-                user_interface = container "User Interface" "Provides web interface for users" {
+                user_interface = container "User Web Interface" "Provides web interface for users" {
                     -> security_gate "Sends requests to"
                 }
 
-                staff_interface = container "Staff Interface" "Provides web interface for staff" {
+                staff_interface = container "Staff Web Interface" "Provides web interface for staff" {
                     -> security_gate "Sends requests to"
                 }
 
-                devices_interface = container "Devices Interface" "Provides some interface for devices" {
+                devices_interface = container "Devices Web Interface" "Provides some interface for devices" {
                     -> security_gate "Sends requests to"
                 }
             }
 
             group databases {
-                device_records = container "Device Records" "Database for storing devices records" {
-                    -> server "Sends data to"
-                }
-
-                drugs_db = container "Drugs Database" "Database for storing drugs records" {
-                    -> server "Sends data to"
-                }
-
-                patient_db = container "Patient Database" "Database for storing patients records" {
-                    -> server "Sends data to"
-                }
+                device_records = container "Device Records" "Database for storing devices records"
+                drugs_db = container "Drugs Database" "Database for storing drugs records"
+                patient_db = container "Patient Database" "Database for storing patients records" 
             }
 
             devices_gateway -> device_records "Requests data from"
             patient_gateway -> patient_db "Requests data from"
             drugs_gateway -> drugs_db "Requests data from"
-
-            device_records -> devices_gateway "Sends data to"
-            patient_db -> patient_gateway "Sends data to"
-            drugs_db -> drugs_gateway "Sends data to"
-
             
 		}
 		
