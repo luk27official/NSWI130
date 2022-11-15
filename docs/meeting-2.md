@@ -1,4 +1,4 @@
-# 2. Konzultace 1.11.
+# 2. Konzultace 1.11. + meeting 15.11.
 - [x] Rozdělit interface (client/server) (>> Nakonec asi ne)
 - [x] Přidat (externí) db o úroveň výše 
 - [x] Synchronizace db
@@ -7,6 +7,7 @@
 - [x] Aplikaci oddělit / Interface
 - [x] (Luky >> Otočit šipky controller)\
 ## Netýká se 1. prezentace
-- [ ] Udělat si jeden Deployment 
-- [ ] Očíslovat pořadí / naznačit průběh algoritmu
-- [ ] Napsat dokumentaci - dokumentace se týká i samotného diagramu - naznačit průběh algoritmu
+- [ ] můžeme zkusit přidat tam ještě container/sw systém webové aplikace? to kvůli deploymentu
+- [ ] Udělat si jeden Deployment - takže jak bychom nasadili app do produkce
+- [ ] Očíslovat pořadí / naznačit průběh algoritmu - dynamic diagram
+- [ ] Napsat dokumentaci - dokumentace se týká i samotného diagramu - naznačit průběh algoritmu - udělat prostě nějaký ten structurizr soubor (podle přednášky)
