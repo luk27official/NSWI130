@@ -2,6 +2,9 @@ workspace patient-monitor-control {
 
 	model {
 
+        patientDatabaseSystem = softwareSystem "Central Hospital Patient Database System" "Central hospital database system containing info about patients."
+        drugDatabaseSystem = softwareSystem "Drugs Database System" "Drugs database system containing info about drugs (possibly from drug management)."
+
 		pmcSystem = softwareSystem "Patient Monitor Control System" "System for monitoring patients in hospital" {
 
 			server = container "Server" "Controls the main logic" {
@@ -67,16 +70,17 @@ workspace patient-monitor-control {
                 }
             }
 
-            group databases {
+            group custom_databases {
                 device_records = container "Device Records" "Database for storing devices records"
-                drugs_db = container "Drugs Database" "Database for storing drugs records"
+                //drugs_db = container "Drugs Database" "Database for storing drugs records"
                 patient_db = container "Patient Database" "Database for storing patients records" 
             }
 
             devices_gateway -> device_records "Requests data from"
             patient_gateway -> patient_db "Requests data from"
-            drugs_gateway -> drugs_db "Requests data from"
-            
+            patient_db -> patientDatabaseSystem "Synchronizes with"
+            //drugs_gateway -> drugs_db "Requests data from"
+            drugs_gateway -> drugDatabaseSystem "Requests data from"
 		}
 		
 		# stakeholders

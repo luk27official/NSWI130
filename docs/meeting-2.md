@@ -1,10 +1,10 @@
 # 2. Konzultace 1.11.
-- [ ] Rozdělit interface (client/server) (>> Nakonec asi ne)
-- [ ] Přidat (externí) db o úroveň výše 
-- [ ] Synchronizace db
-- [ ] Controller (rozdělit?) - user/staff?
+- [x] Rozdělit interface (client/server) (>> Nakonec asi ne)
+- [x] Přidat (externí) db o úroveň výše 
+- [x] Synchronizace db
+- [x] Controller (rozdělit?) - user/staff?
 - [x] pobavit se o směru u services
-- [ ] Aplikaci oddělit / Interface
+- [x] Aplikaci oddělit / Interface
 - [x] (Luky >> Otočit šipky controller)\
 ## Netýká se 1. prezentace
 - [ ] Udělat si jeden Deployment 
