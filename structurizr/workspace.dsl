@@ -84,6 +84,8 @@ workspace patient-monitor-control {
             patient_db_synchronizer -> patientDatabaseSystem "Synchronizes with" "HTTPS"
             //drugs_gateway -> drugs_db "Requests data from"
             drugs_gateway -> drugDatabaseSystem "Requests data from" "HTTPS"
+
+            !docs docs
 		}
 		
 		# stakeholders
@@ -113,7 +115,7 @@ workspace patient-monitor-control {
 
         # deployment
 
-        deploymentEnvironment "Live" {
+        deploymentEnvironment "pmc-live-deployment" {
             deploymentNode "User's device" "" "Common OS (Windows, Linux, Mac)" {
                 deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)" {
                     containerInstance user_interface
@@ -191,7 +193,7 @@ workspace patient-monitor-control {
 			autoLayout
 		}
 
-        deployment pmcSystem "Live" {
+        deployment pmcSystem "pmc-live-deployment" "pmc-live-deployment" {
             include *
         }
 

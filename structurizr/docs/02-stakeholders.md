@@ -1,8 +1,5 @@
-# Patient monitor control (PMC)
-
-The purpose of PMC (patient monitor control) module is to keep information about every patient which is present in the hospital, to get an effective view of the patient's current health state from all the machines, prescribed medication (including dosages) and a camera capturing the patient to be sure that he is doing okay, to efficiently use medical personal where it´s needed and to quickly react when emergency happens.
-
 ## Stakeholders
+
 In this module we have the following stakeholders:
   - **Patients**
 To be taken care of, bigger trust in doctor´s work (medication won´t mix up, someone is always watching if emergency occurs).
