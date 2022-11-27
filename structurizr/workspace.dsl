@@ -113,52 +113,61 @@ workspace patient-monitor-control {
 
         # deployment
 
-        deploymentEnvironment "Live"   {
+        deploymentEnvironment "Live" {
             deploymentNode "User's device" "" "Common OS (Windows, Linux, Mac)" {
                 deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)" {
                     containerInstance user_interface
                 }
             }
+
             deploymentNode "Staff's device" "" "Common OS (Windows, Linux, Mac)" {
                 deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)"   {
                     containerInstance staff_interface
                 }
             }
+
             deploymentNode "Devices' staff/technician device" "" "Common OS (Windows, Linux, Mac)"  {
                 deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)"   {
                     containerInstance devices_interface
                 }
             }
+
             deploymentNode "Patient Monitor Control System Runtime" "" "Patient Monitor Control System"  {
                 deploymentNode "PMC-server" "" "Ubuntu 22.04.1 LTS" "" 4 {
                     deploymentNode "Node.js" "" "Node.js 18.12.*" {
                         containerInstance server
                     }
                 }
+
                 deploymentNode "PMC-security_gate" "" "Ubuntu 22.04.1 LTS" "" {
                     deploymentNode "Node.js" "" "Node.js 18.12.*" {
                         containerInstance security_gate
                     }
                 }
+
                 deploymentNode "PMC-device_records" "" "Ubuntu 22.04.1 LTS"  {
                     deploymentNode "Apache CouchDB" "" "Apache CouchDB 3.*"   {
                         containerInstance device_records
                     }
                 }
+
                 deploymentNode "PMC-patient_db" "" "Ubuntu 22.04.1 LTS"  {
                     deploymentNode "Apache CouchDB" "" "Apache CouchDB 3.*"   {
                         containerInstance patient_db
                     }
                 }
+
                 deploymentNode "PMC-patient_db_synchronizer" "" "Ubuntu 22.04.1 LTS" "" {
                     deploymentNode "Node.js" "" "Node.js 18.12.*" {
                         containerInstance patient_db_synchronizer
                     }
                 }
             }
+
             deploymentNode "External central patient database system" {
                 softwareSystemInstance patientDatabaseSystem
             }
+
             deploymentNode "External drug database system" {
                 softwareSystemInstance drugDatabaseSystem
             }
@@ -184,6 +193,23 @@ workspace patient-monitor-control {
 
         deployment pmcSystem "Live" {
             include *
+        }
+
+        dynamic pmcSystem "Nurse_Get_Patient_Data_Container_Dynamic_View" "Nurse Patient Data Sample Request - Container Dynamics" {
+            staff_interface -> security_gate "Sends a request to the security gate" "HTTPS"
+            security_gate -> server "Verifies the request, then sends it to the controller" "HTTPS"
+            server -> staff_interface "Sends patient data to the staff interface" "HTTPS"
+        }
+
+        dynamic server "Nurse_Get_Patient_Data_Component_Dynamic_View" "Nurse Patient Data Sample Request - Component Dynamics" {
+            security_gate -> staff_API "Verifies the request, then sends it to the controller"
+            staff_API -> controller "Calls the controller API"
+            controller -> patient_gateway "Sends a specialized request to the patient gateway"
+            patient_gateway -> patient_db "Requests patient data from the patient database"
+
+            patient_db -> patient_gateway "Sends patient data to the patient gateway"
+            patient_gateway -> controller "Sends patient data to the controller"
+            controller -> staff_API "Sends patient data to the user API"
         }
 
 		styles {

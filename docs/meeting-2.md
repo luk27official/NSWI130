@@ -7,7 +7,7 @@
 - [x] Aplikaci oddělit / Interface
 - [x] (Luky >> Otočit šipky controller)\
 ## Netýká se 1. prezentace
-- [ ] můžeme zkusit přidat tam ještě container/sw systém webové aplikace? to kvůli deploymentu
-- [ ] Udělat si jeden Deployment - takže jak bychom nasadili app do produkce
-- [ ] Očíslovat pořadí / naznačit průběh algoritmu - dynamic diagram
+- [x] můžeme zkusit přidat tam ještě container/sw systém webové aplikace? to kvůli deploymentu
+- [x] Udělat si jeden Deployment - takže jak bychom nasadili app do produkce
+- [x] Očíslovat pořadí / naznačit průběh algoritmu - dynamic diagram
 - [ ] Napsat dokumentaci - dokumentace se týká i samotného diagramu - naznačit průběh algoritmu - udělat prostě nějaký ten structurizr soubor (podle přednášky)
