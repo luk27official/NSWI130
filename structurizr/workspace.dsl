@@ -51,22 +51,22 @@ workspace patient-monitor-control {
 			}
 
             security_gate = container "Security Gate" "Security gate for controlling access to the system and checking validity of requests" {
-                -> devices_API "Sends verified requests to"
-                -> staff_API "Sends verified requests to"
-                -> user_API "Sends verified requests to"
+                -> devices_API "Sends verified requests to" "HTTPS"
+                -> staff_API "Sends verified requests to" "HTTPS"
+                -> user_API "Sends verified requests to" "HTTPS"
             }
 
             group interfaces {
                 user_interface = container "User Web Interface" "Provides web interface for users" {
-                    -> security_gate "Sends requests to"
+                    -> security_gate "Sends requests to" "HTTPS"
                 }
 
                 staff_interface = container "Staff Web Interface" "Provides web interface for staff" {
-                    -> security_gate "Sends requests to"
+                    -> security_gate "Sends requests to" "HTTPS"
                 }
 
                 devices_interface = container "Devices Web Interface" "Provides some interface for devices" {
-                    -> security_gate "Sends requests to"
+                    -> security_gate "Sends requests to" "HTTPS"
                 }
             }
 
@@ -76,11 +76,14 @@ workspace patient-monitor-control {
                 patient_db = container "Patient Database" "Database for storing patients records" 
             }
 
-            devices_gateway -> device_records "Requests data from"
-            patient_gateway -> patient_db "Requests data from"
-            patient_db -> patientDatabaseSystem "Synchronizes with"
+            patient_db_synchronizer = container "Patient DB synchronizer" "Patient DB synchronizer"
+
+            devices_gateway -> device_records "Requests data from" "HTTPS"
+            patient_gateway -> patient_db "Requests data from" "HTTPS"
+            patient_db -> patient_db_synchronizer "Synchronizes with" "HTTPS"
+            patient_db_synchronizer -> patientDatabaseSystem "Synchronizes with" "HTTPS"
             //drugs_gateway -> drugs_db "Requests data from"
-            drugs_gateway -> drugDatabaseSystem "Requests data from"
+            drugs_gateway -> drugDatabaseSystem "Requests data from" "HTTPS"
 		}
 		
 		# stakeholders
@@ -107,6 +110,59 @@ workspace patient-monitor-control {
             -> staff_interface "Manages"
             -> devices_interface "Manages"
         }
+
+        # deployment
+
+        deploymentEnvironment "Live"   {
+            deploymentNode "User's device" "" "Common OS (Windows, Linux, Mac)" {
+                deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)" {
+                    containerInstance user_interface
+                }
+            }
+            deploymentNode "Staff's device" "" "Common OS (Windows, Linux, Mac)" {
+                deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)"   {
+                    containerInstance staff_interface
+                }
+            }
+            deploymentNode "Devices' staff/technician device" "" "Common OS (Windows, Linux, Mac)"  {
+                deploymentNode "Web Browser" "" "Common browser (Chrome, Firefox, Safari)"   {
+                    containerInstance devices_interface
+                }
+            }
+            deploymentNode "Patient Monitor Control System Runtime" "" "Patient Monitor Control System"  {
+                deploymentNode "PMC-server" "" "Ubuntu 22.04.1 LTS" "" 4 {
+                    deploymentNode "Node.js" "" "Node.js 18.12.*" {
+                        containerInstance server
+                    }
+                }
+                deploymentNode "PMC-security_gate" "" "Ubuntu 22.04.1 LTS" "" {
+                    deploymentNode "Node.js" "" "Node.js 18.12.*" {
+                        containerInstance security_gate
+                    }
+                }
+                deploymentNode "PMC-device_records" "" "Ubuntu 22.04.1 LTS"  {
+                    deploymentNode "Apache CouchDB" "" "Apache CouchDB 3.*"   {
+                        containerInstance device_records
+                    }
+                }
+                deploymentNode "PMC-patient_db" "" "Ubuntu 22.04.1 LTS"  {
+                    deploymentNode "Apache CouchDB" "" "Apache CouchDB 3.*"   {
+                        containerInstance patient_db
+                    }
+                }
+                deploymentNode "PMC-patient_db_synchronizer" "" "Ubuntu 22.04.1 LTS" "" {
+                    deploymentNode "Node.js" "" "Node.js 18.12.*" {
+                        containerInstance patient_db_synchronizer
+                    }
+                }
+            }
+            deploymentNode "External central patient database system" {
+                softwareSystemInstance patientDatabaseSystem
+            }
+            deploymentNode "External drug database system" {
+                softwareSystemInstance drugDatabaseSystem
+            }
+        }
     }
 
 	views {
@@ -125,6 +181,10 @@ workspace patient-monitor-control {
 			include *
 			autoLayout
 		}
+
+        deployment pmcSystem "Live" {
+            include *
+        }
 
 		styles {
 			element "Person" {
