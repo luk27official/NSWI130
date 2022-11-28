@@ -10,4 +10,4 @@
 - [x] můžeme zkusit přidat tam ještě container/sw systém webové aplikace? to kvůli deploymentu
 - [x] Udělat si jeden Deployment - takže jak bychom nasadili app do produkce
 - [x] Očíslovat pořadí / naznačit průběh algoritmu - dynamic diagram
-- [ ] Napsat dokumentaci - dokumentace se týká i samotného diagramu - naznačit průběh algoritmu - udělat prostě nějaký ten structurizr soubor (podle přednášky)
+- [x] Napsat dokumentaci - dokumentace se týká i samotného diagramu - naznačit průběh algoritmu - udělat prostě nějaký ten structurizr soubor (podle přednášky)
