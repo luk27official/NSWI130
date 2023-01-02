@@ -82,21 +82,21 @@ Verdict levels:
    - proposal : add backup database (at least for most frequently used drugs) and synchronization with main one
 
 9. Performance QA
-   - Stimulus: A hufe number of Suppliers (1000) wants to write (supply) new drugs at the same time.
+   - Stimulus: A huge number of Suppliers (1000) wants to write (supply) new drugs at the same time.
    - Source of Stimulus: Department Supplier.
    - Artifact: Security Gate.
-   - Environment: Runtime.
-   - Measure: Milisecond.
-   - Response: Paralelistic approach for proccessing requests and updating databases. Need to prevent any race conditions involved in updating both databases.
+   - Environment: Under busy conditions.
+   - Measure: Number of requests processed.
+   - Response: Paralelistic approach for proccessing requests and updating databases.
    - Verdict: Not completed
-
+   
 10. Security QA
    - Stimulus: User sends an invalid request to "add/remove drugs" or "create activity record" to update "Drug Order List Database".
-   - Source of Stimulus: Security Gate.
+   - Source of Stimulus: Known - Department Supplier.
    - Artifact: Updating Storage Database.
-   - Environment: Runtime.
-   - Measure: Amount of interrupted requests.
-   - Response: Deny access if an invalid request to *change storage database* is sent by Storekeeper or Department Supplier.
+   - Environment: Internal network.
+   - Measure: Number of interrupted requests.
+   - Response: Invalid request to *change storage database* is detected and access is denied with a warning message.
    - Verdict: Not completed
 
 ## Notes:
