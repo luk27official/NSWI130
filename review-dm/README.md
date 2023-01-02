@@ -61,6 +61,23 @@ Verdict levels:
    - Response: The Drug Monitoring System can be easily modified and extended to track the maintenance of medical equipment without affecting the functionality of the system's original purpose.
    - Measure: The amount of modification needed to be made to the system in order to add the feature of tracking the maintenance of medical equipment.
    - Verdict:
+   
+7. Stimulus: number of doctors giving drugs to patients
+   Source of stimulus: different doctors across hospital
+   Artifact: drug monitoring application
+   Environment : busy hour
+   Response: verify user credentials and change number of drugs available as fast as possible
+   Measure: 1 minute
+   Result : user was authorized and drug database access abstraction divided requests into distributed database to make it faster
+   
+8. Stimulus: failed attempt to get number of drugs from database
+   Source of stimulus: hospital database of drugs
+   Artifact: database of some department
+   Environment: runtime
+   Response: restore database 
+   Measure: 1 minute
+   result : we dont have any backups so it might take way longer to find problem and restore it
+   proposal : add backup database (at least for most frequently used drugs) and synchronization with main one
 
 ## Notes:
 
