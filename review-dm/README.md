@@ -31,14 +31,16 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
    - **Measure**: The amount of modification needed to be made to the system in order to add the feature of tracking the maintenance of medical equipment.
    - **Verdict**: Completed
 
-2. **Scalability QA** (m)
-   - **Stimulus**: Too many suppliers want to access the storage server.
-   - **Source of stimulus**: Supplier.
-   - **Artifact**: Storage server.
-   - **Environment**: Design time/runtime.
-   - **Response**: Make, test and deploy the changes.
-   - **Measure**: We added a load balancer and more instances of the servers to the deployment.
-   - **Verdict**: Partially completed.
+2. **Performance QA** (m)
+   - **Stimulus**: A huge number of Suppliers (1000) wants to write (supply) new drugs at the same time.
+   - **Source of Stimulus**: Department Supplier.
+   - **Artifact**: Security Gate.
+   - **Environment**: Under busy conditions.
+   - **Measure**: Number of requests processed.
+   - **Response**: Paralelistic approach for proccessing requests and updating databases.
+   - **Verdict**: Not completed  
+
+   ![Deliver Requested Drug](/review-dm/img/deliver-requested-drug.svg)&nbsp;&nbsp;&nbsp;&nbsp;
 
 3. **Modularity QA** (v)
    - **Stimulus**: A new hospital wants to use the Drug Monitoring System.
@@ -49,15 +51,16 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
    - **Measure**: The number of modifications needed to be made to the system in order to integrate it into the new hospital's IT infrastructure.
    - **Verdict**: Completed.   
 
-4. **Performance QA** (m)
-   - Stimulus: number of doctors giving drugs to patients
-   - Source of stimulus: different doctors across hospital
-   - Artifact: drug monitoring application
-   - Environment : busy hour
-   - Response: verify user credentials and change number of drugs available as fast as possible
-   - Measure: 1 minute
-   - Result : user was authorized and drug database access abstraction divided requests into distributed database to make it faster
-   - Verdict: Completed   
+4. **Security QA** (m)
+   - **Stimulus**: User sends an invalid request to "add/remove drugs" or "create activity record" to update "Drug Order List Database".
+   - **Source of Stimulus**: Known - Department Supplier.
+   - **Artifact**: Updating Storage Database.
+   - **Environment**: Internal network.
+   - **Measure**: Number of interrupted requests.
+   - **Response**: Invalid request to *change storage database* is detected and access is denied with a warning message.
+   - **Verdict**: Not completed   
+
+   ![Storage Server](/review-dm/img/storage-server.svg)&nbsp;&nbsp;&nbsp;&nbsp;
 
 5. **Modifiability QA** (v)
    - **Stimulus**: We want to change the User Activity Records database with minimal changes to other containers (and with minimal costs).
@@ -72,14 +75,14 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
 
     ![alt text](https://github.com/luk27official/NSWI130/blob/ffb202fa28f59e925f1358c39c3ea8c9af7f3a90/review-dm/img/structurizr-Deployment-After.png)&nbsp;&nbsp;&nbsp;&nbsp;
 
-6. **Performance QA** (m)
-   - **Stimulus**: A huge number of Suppliers (1000) wants to write (supply) new drugs at the same time.
-   - **Source of Stimulus**: Department Supplier.
-   - **Artifact**: Security Gate.
-   - **Environment**: Under busy conditions.
-   - **Measure**: Number of requests processed.
-   - **Response**: Paralelistic approach for proccessing requests and updating databases.
-   - **Verdict**: Not completed   
+6. **Scalability QA** (m)
+   - **Stimulus**: Too many suppliers want to access the storage server.
+   - **Source of stimulus**: Supplier.
+   - **Artifact**: Storage server.
+   - **Environment**: Design time/runtime.
+   - **Response**: Make, test and deploy the changes.
+   - **Measure**: We added a load balancer and more instances of the servers to the deployment.
+   - **Verdict**: Partially completed.
 
 7. **Cohesion QA** (v)
    - **Stimulus**: A user wants to view the list of drug orders through the storage mobile application.
@@ -90,14 +93,17 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
    - **Measure**: The amount of unnecessary information that is passed between the Storage Mobile Application and the Drug Show Order List component.
    - **Verdict**: Completed
    
-8. **Security QA** (m)
-   - **Stimulus**: User sends an invalid request to "add/remove drugs" or "create activity record" to update "Drug Order List Database".
-   - **Source of Stimulus**: Known - Department Supplier.
-   - **Artifact**: Updating Storage Database.
-   - **Environment**: Internal network.
-   - **Measure**: Number of interrupted requests.
-   - **Response**: Invalid request to *change storage database* is detected and access is denied with a warning message.
-   - **Verdict**: Not completed   
+8. **Performance QA** (m)
+   - **Stimulus**: number of doctors giving drugs to patients
+   - **Source of stimulus**: different doctors across hospital
+   - **Artifact**: drug monitoring application
+   - **Environment**: busy hour
+   - **Response**: verify user credentials and change number of drugs available as fast as possible
+   - **Measure**: 1 minute
+   - **Result**: user was authorized and drug database access abstraction divided requests into distributed database to make it faster
+   - **Verdict**: Completed   
+
+   ![DMS](/review-dm/img/server.svg)&nbsp;&nbsp;&nbsp;&nbsp;
 
 9. **Perfomance QA** (v)
    - **Stimulus**: User requests to view a drug's history through the mobile application.
