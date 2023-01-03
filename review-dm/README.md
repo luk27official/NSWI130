@@ -44,7 +44,7 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
 
 3. **Modularity QA** (v)
    - **Stimulus**: A new hospital wants to use the Drug Monitoring System.
-   - **Source of stimulus**: Drug Monitoring System.
+   - **Source of stimulus**: External administators. (Drug Monitoring System)
    - **Artifact**: Drug Monitoring System.
    - **Environment**: New hospital's IT infrastructure.
    - **Response**: The Drug Monitoring System can be easily integrated into the new hospital's IT infrastructure without affecting the functionality of the system.
