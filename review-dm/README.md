@@ -86,7 +86,7 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
 
 7. **Cohesion QA** (v)
    - **Stimulus**: A user wants to view the list of drug orders through the storage mobile application.
-   - **Source of stimulus**: Storage Mobile Application.
+   - **Source of stimulus**: Department Supplier. (Storage Mobile Application) 
    - **Artifact**: Drug Show Order List component.
    - **Environment**: Storage Server.
    - **Response**: The list of drug orders is displayed to the user in a timely manner and only relevant information is passed between the Storage Mobile Application and the Drug Show Order List component.
