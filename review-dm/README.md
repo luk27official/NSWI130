@@ -24,7 +24,7 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
 ## Qualitative attributes
 1. **Reusability QA** (v)
    - **Stimulus**: A new hospital wants to use the Drug Monitoring System and also wants to track the maintenance of medical equipment.
-   - **Source of stimulus**: Drug Monitoring System.
+   - **Source of stimulus**: External developers. (Drug Monitoring System)
    - **Artifact**: Drug Monitoring System.
    - **Environment**: New hospital's IT infrastructure.
    - **Response**: The Drug Monitoring System can be easily modified and extended to track the maintenance of medical equipment without affecting the functionality of the system's original purpose.
@@ -65,9 +65,12 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
    - **Artifact**: The database.
    - **Environment**: Design time/runtime.
    - **Response**: Make, test and deploy the changes.
-   - **Measure**: We created two databases for both of the servers which will be deployed independently.
+   - **Measure**: Create database for both of the servers which will be deployed independently.
    - **Verdict**: Not completed.
-   - (TODO ADD img, before/after of 7. Deployment level)   
+
+   ![alt text](https://github.com/luk27official/NSWI130/blob/ffb202fa28f59e925f1358c39c3ea8c9af7f3a90/review-dm/img/structurizr-Deployment-Before.png)&nbsp;&nbsp;&nbsp;&nbsp;
+
+    ![alt text](https://github.com/luk27official/NSWI130/blob/ffb202fa28f59e925f1358c39c3ea8c9af7f3a90/review-dm/img/structurizr-Deployment-After.png)&nbsp;&nbsp;&nbsp;&nbsp;
 
 6. **Performance QA** (m)
    - **Stimulus**: A huge number of Suppliers (1000) wants to write (supply) new drugs at the same time.
@@ -115,8 +118,3 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
     - **Result**: we dont have any backups so it might take way longer to find problem and restore it
     - **Proposal**: add backup database (at least for most frequently used drugs) and synchronization with main one
     - **Verdict**: Not completed
-
-## Notes:
-
-- Kvalitativní atribut performance zkoumá schopnost systému nebo komponenty v systému zpracovávat požadavky za stanoveného časového nebo objemového limitu. Může se týkat rychlosti zpracování požadavků, kapacity systému zpracovat určitý počet požadavků za jednotku času, nebo schopnosti systému zpracovávat velké objemy dat bez zpomalení nebo selhání. Měřítkem pro hodnocení performance může být například průměrná doba odezvy systému nebo maximální zatížitelnost systému.
-- Kvalitativní atribut scalability zkoumá schopnost systému nebo komponenty v systému zvýšit nebo snížit jeho výkon v závislosti na změně požadavků. Může se týkat schopnosti systému rozšířit kapacitu zpracování požadavků nebo objemu dat v případě nárůstu požadavků, nebo naopak snížit kapacitu v případě snížení požadavků. Scalability může být vertikální, kdy se změna kapacity dosahuje změnou výkonu jednotlivých komponent, nebo horizontální, kdy se změna kapacity dosahuje přidáním nebo odebráním komponent ze systému. Měřítkem pro hodnocení scalability může být například rychlost reakce systému na změnu požadavků nebo míra úsilí potřebná k dosáhnutí požadované kapacity.
