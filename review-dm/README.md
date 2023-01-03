@@ -77,11 +77,11 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
 
 6. **Scalability QA** (m)
    - **Stimulus**: Too many suppliers want to access the storage server.
-   - **Source of stimulus**: Supplier.
+   - **Source of stimulus**: Suppliers.
    - **Artifact**: Storage server.
    - **Environment**: Design time/runtime.
-   - **Response**: Make, test and deploy the changes.
-   - **Measure**: We added a load balancer and more instances of the servers to the deployment.
+   - **Response**: We added a load balancer and more instances of the servers to the deployment.
+   - **Measure**: 1 business day.
    - **Verdict**: Partially completed.
 
 7. **Cohesion QA** (v)
@@ -119,8 +119,8 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
     - **Source of stimulus**: hospital database of drugs
     - **Artifact**: database of some department
     - **Environment**: runtime
-    - **Response**: add backup database and restore it if needed
-    - **Measure**: 1 business day
+    - **Response**: restore data
+    - **Measure**: 1 minute downtime
     - **Result**: we dont have any backups so it might take way longer to find problem and restore it
     - **Proposal**: add backup database (at least for most frequently used drugs) and synchronization with main one
     - **Verdict**: Not completed
