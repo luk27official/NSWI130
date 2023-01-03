@@ -119,8 +119,8 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
     - **Source of stimulus**: hospital database of drugs
     - **Artifact**: database of some department
     - **Environment**: runtime
-    - **Response**: restore database 
-    - **Measure**: 1 minute
+    - **Response**: add backup database and restore it if needed
+    - **Measure**: 1 business day
     - **Result**: we dont have any backups so it might take way longer to find problem and restore it
     - **Proposal**: add backup database (at least for most frequently used drugs) and synchronization with main one
     - **Verdict**: Not completed
