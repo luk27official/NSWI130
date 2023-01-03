@@ -19,6 +19,8 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
    - Vývojáři a správci 
    - Interní zásobování
 
+   ![alt text](https://github.com/luk27official/NSWI130/blob/ae69816967164d31e3e220759b168c1beff4f902/review-dm/img/structurizr-System_context.png)&nbsp;&nbsp;&nbsp;&nbsp;
+
 ## Qualitative attributes
 1. **Reusability QA** (v)
    - **Stimulus**: A new hospital wants to use the Drug Monitoring System and also wants to track the maintenance of medical equipment.
@@ -113,3 +115,8 @@ Link to the repository: https://gitlab.mff.cuni.cz/duongx/architektura2022
     - **Result**: we dont have any backups so it might take way longer to find problem and restore it
     - **Proposal**: add backup database (at least for most frequently used drugs) and synchronization with main one
     - **Verdict**: Not completed
+
+## Notes:
+
+- Kvalitativní atribut performance zkoumá schopnost systému nebo komponenty v systému zpracovávat požadavky za stanoveného časového nebo objemového limitu. Může se týkat rychlosti zpracování požadavků, kapacity systému zpracovat určitý počet požadavků za jednotku času, nebo schopnosti systému zpracovávat velké objemy dat bez zpomalení nebo selhání. Měřítkem pro hodnocení performance může být například průměrná doba odezvy systému nebo maximální zatížitelnost systému.
+- Kvalitativní atribut scalability zkoumá schopnost systému nebo komponenty v systému zvýšit nebo snížit jeho výkon v závislosti na změně požadavků. Může se týkat schopnosti systému rozšířit kapacitu zpracování požadavků nebo objemu dat v případě nárůstu požadavků, nebo naopak snížit kapacitu v případě snížení požadavků. Scalability může být vertikální, kdy se změna kapacity dosahuje změnou výkonu jednotlivých komponent, nebo horizontální, kdy se změna kapacity dosahuje přidáním nebo odebráním komponent ze systému. Měřítkem pro hodnocení scalability může být například rychlost reakce systému na změnu požadavků nebo míra úsilí potřebná k dosáhnutí požadované kapacity.
